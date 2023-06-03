@@ -41,6 +41,15 @@ TopBar.SubTitle = styled.Text`
   font-weight: bold;
 `;
 
+const ScreenArea = styled.View`
+  flex: 1;
+`;
+
+const CoverArea = styled.View``;
+CoverArea.Image = styled.Image``;
+
+const PlayerArea = styled.View``;
+
 export default function Player() {
   return (
     <Background>
@@ -58,6 +67,18 @@ export default function Player() {
           <MoreVertIcon />
         </TopBar.Right>
       </TopBar>
+
+      <ScreenArea>
+        <CoverArea>
+          <CoverArea.Image
+            source={{
+              uri: "https://placehold.it/750x750",
+            }}
+          />
+        </CoverArea>
+
+        <PlayerArea></PlayerArea>
+      </ScreenArea>
     </Background>
   );
 }
