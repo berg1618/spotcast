@@ -3,7 +3,8 @@ import { ChevronIcon } from "../components/icons/Chevron";
 import { MoreVertIcon } from "../components/icons/MoreVert";
 import { PlayIcon } from "../components/icons/Play";
 import { LinearGradient } from "expo-linear-gradient";
-import { Slider } from "react-native";
+import Slider from "@react-native-community/slider";
+import { useState } from "react";
 
 const Background = ({ children }) => {
   return (
@@ -84,6 +85,7 @@ Controls.Slider = styled.View`
   flex-basis: 100%;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
 `;
 
 Controls.Slider.CurrentTime = styled.View`
@@ -94,8 +96,12 @@ Controls.Slider.TotalTime = styled.View`
   color: #bbbbbb;
 `;
 
-// const AudioSlider = '';
+const AudioSlider = styled(Slider)`
+  flex-basis: 100%;
+`;
 export default function Player() {
+  const [segundos, setSegundos] = useState(0);
+
   return (
     <Background>
       <TopBar>
@@ -117,9 +123,7 @@ export default function Player() {
         <CoverArea>
           <CoverArea.Image
             resizeMode="contain"
-            source={{
-              uri: "https://placehold.it/750x750",
-            }}
+            source={require("./../assets/btcast.png")}
           />
         </CoverArea>
 
@@ -132,7 +136,7 @@ export default function Player() {
 
         <Controls>
           <Controls.Slider>
-            {/* <AudioSlider
+            <AudioSlider
               thumbTintColor="#FFFFFF"
               minimumTrackTintColor="#1DD65F"
               maximumTrackTintColor="#777777"
@@ -142,8 +146,10 @@ export default function Player() {
               onValueChange={(value) => {
                 setSegundos(value);
               }}
-            /> */}
-            <Controls.Slider.CurrentTime>0:00</Controls.Slider.CurrentTime>
+            />
+            <Controls.Slider.CurrentTime>
+              0:{segundos}
+            </Controls.Slider.CurrentTime>
             <Controls.Slider.TotalTime>52:07</Controls.Slider.TotalTime>
           </Controls.Slider>
           <Controls.Play>
